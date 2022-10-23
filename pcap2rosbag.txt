@@ -1,0 +1,14 @@
+sudo apt-get install ros-melodic-velodyne*
+roslaunch velodyne_pointcloud 32e_points.launch pcap:=/home/wyc/0918/2021-09-18-15-42-46.pcap pcap_time:=true read_once:=true
+
+rosbag record -O 1527none.bag /velodyne_points
+
+rosbag record -O 1527none.bag /velodyne_points --size=2048 --split -p
+-p 是分卷，--size的单位是MB
+
+
+Error opening Velodyne socket dump file 的一种原因：pcap的位置给错了 or
+没有给完整路径，不可以是～/路径
+
+pcap_time:=true 才是时间戳是pcap的原始时间
+_pcap_time:=true 无效
