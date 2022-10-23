@@ -29,8 +29,10 @@
 修改"de_rz"的value值，微调最终实现较为精确的标定
 rviz的修改类似1）d
 #### d.  通过修改launch中的de_rz值，并观察rviz中点云的状态，直到微调的标定结果达到要求，记录de_rz值
+    roslaunch /launch/2_Calib.launch
 ## 3. 从pcap生成标定后的rosbag包
 ### <u>1）用2中标定的de_rz值替换3_TransCalib.launch中de_rz值</u>
 ### <u>2）修改pcap的路径为需要解析的pcap</u>
+    roslaunch /launch/3_TransCalib.launch
 
 *注意：如果2,3的launch报错，在calib文件夹再执行一次`source devel/setup.bash`*
