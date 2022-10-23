@@ -1,0 +1,24 @@
+<launch>
+
+<include file = "$(find velodyne_pointcloud)/launch/32e_points.launch">
+	<arg name = "pcap" value = "/home/wyc/0918/2021-09-18-09-21-49.pcap"/>
+	<arg name = "pcap_time" value = "true"/>
+	<arg name = "read_once" value = "true"/>
+</include>
+
+<node
+pkg = "rosbag"
+type = "record"
+name = "transbag"
+args = "-O /home/wyc/0918/calib.bag /velodyne_points"
+/>
+
+<node
+pkg = "rviz"
+type = "rviz"
+name = "rviz"
+args = "-d /home/wyc/mygit/LidarCalib/rviz_config/velodyne_config.rviz"
+required = "true"
+/>
+
+</launch>

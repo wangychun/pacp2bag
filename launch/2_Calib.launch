@@ -1,0 +1,31 @@
+<launch>
+
+<node
+pkg = "rosbag"
+type = "play"
+name = "play"
+args = "-l /home/wyc/0918/pointbag/calibline.bag"
+/>
+
+<!--output = "screen"-->
+
+<node
+pkg="lidar_calib"
+type="lidar_calib"
+name="calib_node"
+output = "screen"
+>
+<param name="de_rz" value= "-17.2" type="double"/>
+</node>
+
+<!--这里的de_rz的单位是degree度数，在程序中转rad单位-->
+
+<node
+pkg = "rviz"
+type = "rviz"
+name = "rviz"
+args = "-d /home/wyc/mygit/LidarCalib/calib.rviz"
+required = "true"
+/>
+
+</launch>

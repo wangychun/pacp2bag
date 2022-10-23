@@ -1,0 +1,34 @@
+<launch>
+
+<include file = "$(find velodyne_pointcloud)/launch/32e_points.launch">
+	<arg name = "pcap" value = "/home/wyc/0918/envir/1527_none/2021-09-18-15-27-39.pcap"/>
+	<arg name = "pcap_time" value = "true"/>
+	<arg name = "read_once" value = "true"/>
+</include>
+
+<node
+pkg="lidar_calib"
+type="lidar_calib"
+name="calib_node"
+>
+<param name="de_rz" value= "-17.2" type="double"/>
+</node>
+<!--这里记得改成calib.launch中标定好的de_rz-->
+
+<node
+pkg = "rosbag"
+type = "record"
+name = "transbag"
+args = "-O /home/wyc/mygit/LidarCalib/polish_poind/1527polish.bag /lidarcalib"
+/>
+
+<node
+pkg = "rviz"
+type = "rviz"
+name = "rviz"
+args = "-d /home/wyc/mygit/LidarCalib/rviz_config/calib.rviz"
+required = "true"
+/>
+
+
+</launch>
