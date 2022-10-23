@@ -11,7 +11,7 @@
 #### c.  rviz的config文件要绝对路径
 可以先不开这个节点，先rviz调整好，再保存config文件
 #### d.  执行1_Trans.launch文件
-    解析pcap文件至rosbag文件
+解析pcap文件至rosbag文件
     roslaunch /launch/1_Trans.launch
 ### <u>2)  标定（2_Calib.launch,src)</u>
 #### a.  先建立ros工作空间，把src文件放进去
