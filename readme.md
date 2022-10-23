@@ -21,6 +21,7 @@
     source devel/setup.bash
 #### b.  修改src中的main.cpp
 直接在文件中找到dx,dy,dz,rx,ry,rz的赋值代码段，除了rz，其他参数都直接给出（dx,dy,dz）是量的，以车辆行驶方向为y轴。修改后记得编译。
+
     catkin_make
 #### c.  修改2_Calib.launch
 修改rosbag节点（node)的arg,改成1）b中bag存储的文件路径
