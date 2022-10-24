@@ -35,7 +35,10 @@ add_definitions(${PCL_DEFINITIONS})
 
 add_executable(lidar_calib
 			main.cpp
-
+			)
+add_executable(calibwithimu
+			withimu.cpp
 			)
 
 target_link_libraries(lidar_calib ${catkin_LIBRARIES} ${PCL_LIBRARIES}  ${OpenCV_LIBS} )
+target_link_libraries(calibwithimu ${catkin_LIBRARIES} ${PCL_LIBRARIES}  ${OpenCV_LIBS} )
