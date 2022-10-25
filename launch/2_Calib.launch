@@ -4,10 +4,11 @@
 pkg = "rosbag"
 type = "play"
 name = "play"
-args = "-l /home/wyc/0918/pointbag/calibline.bag"
+args = "/home/wyc/mygit/LidarCalib/lidardown.bag"
 />
 
 <!--output = "screen"-->
+<!--其中-l = -loop，即循环播放bag包-->
 
 <node
 pkg="lidar_calib"
@@ -15,10 +16,17 @@ type="lidar_calib"
 name="calib_node"
 output = "screen"
 >
-<param name="de_rz" value= "-17.2" type="double"/>
+<param name="de_rz" value= "-17" type="double"/>
 </node>
 
 <!--这里的de_rz的单位是degree度数，在程序中转rad单位-->
+
+<node
+pkg = "rosbag"
+type = "record"
+name = "transbag"
+args = "-O /home/wyc/mygit/LidarCalib/lidarmid.bag /lidarcalib"
+/>
 
 <node
 pkg = "rviz"

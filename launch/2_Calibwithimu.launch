@@ -1,0 +1,39 @@
+<launch>
+
+<node
+pkg = "rosbag"
+type = "play"
+name = "poind"
+args = "-l /home/wyc/mygit/LidarCalib/lidarmid.bag"
+/>
+
+<node
+pkg = "rosbag"
+type = "play"
+name = "imu"
+args = "-l /home/wyc/mygit/LidarCalib/rvs2bag/imu_idown.bag"
+/>
+
+<!--output = "screen"-->
+<!--其中-l = -loop，即循环播放bag包-->
+
+<node
+pkg="lidar_calib"
+type="calibwithimu"
+name="calib_node"
+output = "screen"
+/>
+
+<!--这里的de_rz的单位是degree度数，在程序中转rad单位-->
+
+<node
+pkg = "rviz"
+type = "rviz"
+name = "rviz"
+args = "-d /home/wyc/mygit/LidarCalib/rviz_config/calibwithimu.rviz"
+required = "true"
+/>
+
+
+
+</launch>

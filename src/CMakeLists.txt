@@ -11,6 +11,7 @@ set(PACKAGE_DEPENDENCIES
   roscpp
   sensor_msgs
   std_msgs
+  message_filters
 
 )
 
@@ -38,6 +39,7 @@ add_executable(lidar_calib
 			)
 add_executable(calibwithimu
 			withimu.cpp
+			withimu.h
 			)
 
 target_link_libraries(lidar_calib ${catkin_LIBRARIES} ${PCL_LIBRARIES}  ${OpenCV_LIBS} )
