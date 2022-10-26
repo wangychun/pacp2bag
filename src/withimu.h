@@ -40,8 +40,12 @@ void howcalib(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud)
 		for(int i = 0; i < cloud->size(); i++)
 		{
 			if(
-					cloud->points[i].x > 3 or cloud->points[i].x < -3 or
-					cloud->points[i].y > 15 or cloud->points[i].y < 0)
+					// 俯仰角
+//					cloud->points[i].x > 3 or cloud->points[i].x < -3 or
+//					cloud->points[i].y > 15 or cloud->points[i].y < 0)
+					//left-right
+					cloud->points[i].y > 3 or cloud->points[i].y < -3 or
+					cloud->points[i].x > 0 or cloud->points[i].x < -15)
 				continue;
 			gdlist.push_back(i);
 		}
@@ -64,11 +68,14 @@ void howcalib(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud)
 		double b = coefficients->values[1];
 		double c = coefficients->values[2];
 
-		double plrx = acos(c/sqrt(b*b+c*c));
-		double plry = acos(c/sqrt(a*a+c*c));
-		plrx = plrx * 180 / pi;
-		plry = plry * 180 / pi;
-		std::cout << "plrx, plry:" << plrx << ", " << plry << std::endl;
+
+		double plrx = atan(b/c);
+		double plry = atan(a/c);
+		double plrx2, plry2;
+		plrx2 = plrx * 180 / pi;
+		plry2 = plry * 180 / pi;
+//		std::cout << "plrx, plry:" << plrx << ", " << plry << std::endl;
+		std::cout << "plrx2, plry2:" << plrx2 << ", " << plry2 << std::endl;
 //		std::cout << "drx, dry:" << plrx - ry_msg << ", " << plry - rx_msg<< std::endl;
 }
 

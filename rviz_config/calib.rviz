@@ -55,8 +55,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 14.704849243164062
-        Min Value: -2.4802932739257812
+        Max Value: 15.338968276977539
+        Min Value: -8.405145645141602
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -75,7 +75,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.009999999776482582
       Style: Points
-      Topic: /lidarcalib
+      Topic: /lidar_calibed
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true

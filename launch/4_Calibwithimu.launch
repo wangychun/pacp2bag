@@ -4,14 +4,14 @@
 pkg = "rosbag"
 type = "play"
 name = "poind"
-args = "-l /home/wyc/mygit/LidarCalib/lidarmid.bag"
+args = "-l /home/wyc/mygit/LidarCalib/imucalib/lidarleft.bag"
 />
 
 <node
 pkg = "rosbag"
 type = "play"
 name = "imu"
-args = "-l /home/wyc/mygit/LidarCalib/rvs2bag/imu_idown.bag"
+args = "-l /home/wyc/mygit/LidarCalib/rvs2bag/imuleft.bag"
 />
 
 <!--output = "screen"-->
@@ -22,7 +22,10 @@ pkg="lidar_calib"
 type="calibwithimu"
 name="calib_node"
 output = "screen"
-/>
+>
+<param name="de_rx" value= "-0.954" type="double"/>
+<param name="de_ry" value= "1.433" type="double"/>
+</node>
 
 <!--这里的de_rz的单位是degree度数，在程序中转rad单位-->
 

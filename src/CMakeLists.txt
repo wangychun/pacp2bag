@@ -41,6 +41,10 @@ add_executable(calibwithimu
 			withimu.cpp
 			withimu.h
 			)
+add_executable(lidartrans
+			main_tranimu.cpp
+)
 
 target_link_libraries(lidar_calib ${catkin_LIBRARIES} ${PCL_LIBRARIES}  ${OpenCV_LIBS} )
 target_link_libraries(calibwithimu ${catkin_LIBRARIES} ${PCL_LIBRARIES}  ${OpenCV_LIBS} )
+target_link_libraries(lidartrans ${catkin_LIBRARIES} ${PCL_LIBRARIES}  ${OpenCV_LIBS} )

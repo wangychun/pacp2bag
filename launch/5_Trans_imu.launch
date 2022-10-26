@@ -1,25 +1,33 @@
 <launch>
 
+<!--pcap转rostopic-->
 <include file = "$(find velodyne_pointcloud)/launch/32e_points.launch">
-	<arg name = "pcap" value = "/home/wyc/0927/envir_1/02_1206/2021-09-27-12-06-11.pcap"/>
+	<arg name = "pcap" value = "/home/wyc/0927/envir_1/06_1225/2021-09-27-12-25-07.pcap"/>
 	<arg name = "pcap_time" value = "true"/>
 	<arg name = "read_once" value = "true"/>
 </include>
 
+<!--imu数据发布-->
+<node
+pkg = "rosbag"
+type = "play"
+name = "imu"
+args = "/home/wyc/mygit/LidarCalib/rvs2bag/06_1225imu.bag"
+/>
+
+<!--完整点云标定程序-->
 <node
 pkg="lidar_calib"
-type="lidar_calib"
+type="lidartrans"
 name="calib_node"
->
-<param name="de_rz" value= "-17" type="double"/>
-</node>
-<!--这里记得改成calib.launch中标定好的de_rz-->
+/>
 
+<!--录完整标定的点云包-->
 <node
 pkg = "rosbag"
 type = "record"
 name = "transbag"
-args = "-O /home/wyc/mygit/LidarCalib/imucalib/lidar02_1206.bag /lidarcalib"
+args = "-O /home/wyc/mygit/LidarCalib/calibed_lidar/06_1225_lidar.bag /lidar_calibed"
 />
 
 <node

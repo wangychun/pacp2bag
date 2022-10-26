@@ -4,7 +4,7 @@
 pkg = "rosbag"
 type = "play"
 name = "play"
-args = "/home/wyc/mygit/LidarCalib/lidardown.bag"
+args = "/LidarCalib/lidarup.bag"
 />
 
 <!--output = "screen"-->
@@ -25,7 +25,7 @@ output = "screen"
 pkg = "rosbag"
 type = "record"
 name = "transbag"
-args = "-O /home/wyc/mygit/LidarCalib/lidarmid.bag /lidarcalib"
+args = "-O /home/wyc/mygit/LidarCalib/lidarupmid.bag /lidarcalib"
 />
 
 <node
