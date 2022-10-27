@@ -1,7 +1,7 @@
 <launch>
 
 <include file = "$(find velodyne_pointcloud)/launch/32e_points.launch">
-	<arg name = "pcap" value = "/home/wyc/0927/envir_1/02_1206/2021-09-27-12-06-11.pcap"/>
+	<arg name = "pcap" value = "/home/wyc/0927/envir_1/06_1225/2021-09-27-12-25-07.pcap"/>
 	<arg name = "pcap_time" value = "true"/>
 	<arg name = "read_once" value = "true"/>
 </include>
@@ -19,7 +19,7 @@ name="calib_node"
 pkg = "rosbag"
 type = "record"
 name = "transbag"
-args = "-O /home/wyc/mygit/LidarCalib/imucalib/lidar02_1206.bag /lidarcalib"
+args = "-O /home/wyc/mygit/LidarCalib/imucalib/lidar06_1225.bag /lidarcalib"
 />
 
 <node

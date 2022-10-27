@@ -12,7 +12,7 @@
 pkg = "rosbag"
 type = "play"
 name = "imu"
-args = "/home/wyc/mygit/LidarCalib/rvs2bag/06_1225imu.bag"
+args = "/home/wyc/mygit/LidarCalib/rvs2bag/061225imu.bag"
 />
 
 <!--完整点云标定程序-->
@@ -20,6 +20,7 @@ args = "/home/wyc/mygit/LidarCalib/rvs2bag/06_1225imu.bag"
 pkg="lidar_calib"
 type="lidartrans"
 name="calib_node"
+output = "screen"
 />
 
 <!--录完整标定的点云包-->

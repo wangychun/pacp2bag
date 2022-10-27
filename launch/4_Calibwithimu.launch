@@ -4,14 +4,14 @@
 pkg = "rosbag"
 type = "play"
 name = "poind"
-args = "-l /home/wyc/mygit/LidarCalib/imucalib/lidarleft.bag"
+args = "-l /home/wyc/mygit/LidarCalib/imucalib/lidar06_1225.bag"
 />
 
 <node
 pkg = "rosbag"
 type = "play"
 name = "imu"
-args = "-l /home/wyc/mygit/LidarCalib/rvs2bag/imuleft.bag"
+args = "-l /home/wyc/mygit/LidarCalib/rvs2bag/06_1225imu.bag"
 />
 
 <!--output = "screen"-->

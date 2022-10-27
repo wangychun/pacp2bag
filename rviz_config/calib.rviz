@@ -26,7 +26,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 1
-    SyncSource: PointCloud2
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -55,8 +55,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 15.338968276977539
-        Min Value: -8.405145645141602
+        Max Value: 4.869837760925293
+        Min Value: -5.740501403808594
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -135,7 +135,7 @@ Visualization Manager:
       Near Clip Distance: 0.009999999776482582
       Pitch: 1.5697963237762451
       Target Frame: <Fixed Frame>
-      Yaw: 4.723583698272705
+      Yaw: 4.718583583831787
     Saved: ~
 Window Geometry:
   Displays:

@@ -100,7 +100,7 @@ int main(int argc, char **argv)
 {
 
 	ros::init(argc, argv, "calib_node");
-	SubscribeAndPublish SAPObject(ros::NodeHandle(), "velodyne_points");
+	SubscribeAndPublish SAPObject(ros::NodeHandle(), "/velodyne_points");
 
 	ROS_INFO("waiting for data!");
 	ros::spin();

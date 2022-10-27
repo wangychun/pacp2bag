@@ -29,6 +29,7 @@ public:
 		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_mark(new pcl::PointCloud<pcl::PointXYZ>);
 		pcl::fromROSMsg(*cloudmsg, *cloud);
 
+		 std::cout << "---------------"<<std::endl;
 		double rx_msg = imudata_msg->orientation.x ;
 		double ry_msg = imudata_msg->orientation.y ;
 
@@ -41,10 +42,9 @@ public:
 	   double de_ry = 1.433;	ry_msg += de_ry;
 	   double de_rz = -17;
 
-	   rx = pi*(-ry_msg)/180;
-	   ry = pi*rx_msg/180;
-	   rz = pi*de_rz/180;
-
+	   rx = pi*(-ry_msg)/180.0;
+	   ry = pi*rx_msg/180.0;
+	   rz = pi*de_rz/180.0;
 	   Eigen::Vector3d T; //列向量，如果要初始化行向量，用:Eigen::RowVectorXd
 	   Eigen::Matrix3d Rx, Ry, Rz, R;
 	   T << dx, dy, dz;
@@ -78,7 +78,6 @@ public:
 		ros_cloud.header.frame_id = "car";
 		ros_cloud.header.stamp = cloudmsg->header.stamp;
 		pub_.publish(ros_cloud);
-
 	}
 
 private:
@@ -95,9 +94,10 @@ private:
 SubscribeAndPublish::SubscribeAndPublish(ros::NodeHandle nh,
 		std::string lidar_topic_name, std::string imudata_topic_name ):
         n_(nh), Sub_Lidar(nh, lidar_topic_name, 1000), Sub_Imu(nh, imudata_topic_name,1000),
-		sync(MySyncPolicy(30), Sub_Lidar, Sub_Imu)
+		sync(MySyncPolicy(100), Sub_Lidar, Sub_Imu)
 {
 	//Topic you want to publish
+
 
 	pub_ = nh.advertise < sensor_msgs::PointCloud2 > ("/lidar_calibed", 10);
 	sync.registerCallback(boost::bind(&SubscribeAndPublish::callback, this, _1, _2));
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
 {
 
 	ros::init(argc, argv, "calib_node");
-	SubscribeAndPublish SAPObject(ros::NodeHandle(), "velodyne_points","/imu");
+	SubscribeAndPublish SAPObject(ros::NodeHandle(), "/velodyne_points","/imu");
 
 	ROS_INFO("waiting for data!");
 	ros::spin();
