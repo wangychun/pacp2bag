@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../csv2bag/.idea/csv2bag.iml" filepath="$PROJECT_DIR$/../csv2bag/.idea/csv2bag.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../elem/.idea/elem.iml" filepath="$PROJECT_DIR$/../../elem/.idea/elem.iml" />
+    </modules>
+  </component>
+</project>
