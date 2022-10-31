@@ -1,13 +1,6 @@
 # coding=utf-8
 import math
-# import re
-import pandas as pd
-import csv
 
-dfg = pd.read_csv(
-    '/home/wyc/0918/envir/1527_none/gpslog2021-09-18-15-27-39.log-GPS.csv')
-dfi = pd.read_csv(
-    '/home/wyc/0918/envir/1527_none/gpslog2021-09-18-15-27-39.log-IMU.csv')
 
 class GisTransform(object):
     """gis坐标转换类"""
@@ -23,8 +16,6 @@ class GisTransform(object):
         func_name = old_gis_name + '_to_' + new_gis_name
         if hasattr(self, func_name):
             self.transform_func = getattr(self, func_name)
-
-
 
     def _transformlat(self, lng, lat):
         ret = -100.0 + 2.0 * lng + 3.0 * lat + 0.2 * lat * lat + \
@@ -55,7 +46,6 @@ class GisTransform(object):
         y = y * 20037508.34789 / 180
         return x, y
 
-
     def webMercator_to_wgs84(self, x, y):
         """墨卡托坐标 转 wgs84坐标"""
         lon = x / 20037508.34 * 180
@@ -63,44 +53,3 @@ class GisTransform(object):
         lat = 180 / self.pi * \
             (2 * math.atan(math.exp(lat * self.pi / 180)) - self.pi / 2)
         return lon, lat
-
-
-if __name__ == '__main__':
-    # 经纬度: wgs84 墨卡托: webMercator 国测局: gcj02
-    rrow = 0
-    gis = GisTransform('wgs84', 'webMercator')
-
-    while rrow < dfg.shape[0] - 60:
-        tip = dfg['timestamp'][rrow]
-        # rosftime = 1632672000 + int(tip) // 1000 + int(tip) % 1000 / 1000 #0927
-        rosftime = 1631894400 + int(tip) // 1000 + int(tip) % 1000 / 1000
-        log_path = 'ord_0918/ord'+ str(rosftime) + '.csv'
-        file = open(log_path, 'a+', encoding='utf-8', newline='')
-        csv_writer = csv.writer(file)
-        csv_writer.writerow([f'x', 'y'])
-
-        # timestamp = rospy.Time.from_seconds(rosftime)
-        latitude = dfg[' latitude'][rrow]   # 维度
-        longitude = dfg[' longitude'][rrow] # 经度
-        ord_o = gis.transform_func(longitude, latitude)
-        print("ord: ",ord_o)
-        csv_writer.writerow([ord_o[0], ord_o[1]])
-        for i in range(60):
-            row = rrow + i
-            heading = dfi[' heading'][row]
-            radh = math.radians(heading)
-            # print(radh)
-            lat = dfg[' latitude'][row]  # 维度
-            lon = dfg[' longitude'][ row] # 经度
-            g_x, g_y = gis.transform_func(lon, lat)
-            print("gxy: ",g_x, g_y)
-            gx = g_x - ord_o[0]
-            gy = g_y - ord_o[1]
-            print("xy: ", gx,gy)
-            ordx = gx * math.cos(radh) - gy * math.sin(radh)
-            ordy = gy * math.cos(radh) + gx * math.sin(radh)
-            csv_writer.writerow([ordx, ordy])
-        # print(gis.transform_func(114.09538, 22.62663))
-        rrow = rrow + 60
-
-    file.close()
