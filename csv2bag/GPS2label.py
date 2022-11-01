@@ -10,7 +10,7 @@ dfg = pd.read_csv(
     '/home/wyc/0927/envir_2/gpslog2021-09-27-14-49-45.log-GPS.csv')
 dfi = pd.read_csv(
     '/home/wyc/0927/envir_2/gpslog2021-09-27-14-49-45.log-IMU.csv')
-un_name = os.listdir('/home/wyc/0927/second_train/train/data_batch/')
+un_name = os.listdir('/home/wyc/0927/0_zero_train/test/data/')
 un_name.sort()
 
 rrow = 0
@@ -25,7 +25,7 @@ for rrow in range(dfg.shape[0]):
     if rosftime_str == train_name:
         data_index = data_index + 6  #first train 模式，每6张图片一组，分包1-6,7-12,13-18
         # data_index = data_index + 1 #second train模式，每6张图片一组，1-6,2-7,3-8
-        log_path = '/home/wyc/0927/first_train/train/label/' + rosftime_str + '.csv'
+        log_path = '/home/wyc/0927/0_zero_train/test/label/' + rosftime_str + '.csv'
         file = open(log_path, 'a+', encoding='utf-8', newline='')
         csv_writer = csv.writer(file)
         csv_writer.writerow([f'x', 'y'])
@@ -53,6 +53,7 @@ for rrow in range(dfg.shape[0]):
             # print("xy: ", gx, gy)
             ordx = gx * math.cos(radh) - gy * math.sin(radh)
             ordy = gy * math.cos(radh) + gx * math.sin(radh)
+            ordx = -ordx # (发现值反了)
 
             if (i + 1) % 10 == 0:
                 # csv_writer.writerow([save_x / 10.0, save_y / 10.0])

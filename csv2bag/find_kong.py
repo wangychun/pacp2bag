@@ -1,7 +1,7 @@
 # 检查数据是否连续
 import os
 
-un_name = os.listdir('/home/wyc/0927/second_train/train/data/')
+un_name = os.listdir('/home/wyc/0927/0_zero_train/train/data/')
 un_name.sort()
 
 # 1632725394.009--1632728102.359
