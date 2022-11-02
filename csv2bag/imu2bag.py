@@ -1,14 +1,14 @@
 import time
 
 import pandas as pd
-df = pd.read_csv('/home/wyc/0927/envir_2/gpslog2021-09-27-14-49-45.log-IMU.csv')
+df = pd.read_csv('/home/wyc/0927/envir_1_data&train/envir_1/04_1216/gpslog2021-09-27-12-16-47.log-IMU.csv')
 # for row in range(df.shape[0]):
 #     print(df['timestamp'][row])
 import rospy
 import rosbag
 from sensor_msgs.msg import Imu
 
-with rosbag.Bag('/home/wyc/0927/first_train/orgin_data/imu.bag', 'w') as bag:
+with rosbag.Bag('/home/wyc/0927/test_envir1/bag/imu.bag', 'w') as bag:
     for row in range(df.shape[0]):
         tip = df['timestamp'][row]
         # print(df['timestamp'][row])

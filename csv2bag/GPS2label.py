@@ -4,13 +4,20 @@ import math
 import os
 import pandas as pd
 import csv
+import pathlib
 
 gis = GisTransform('wgs84', 'webMercator')
 dfg = pd.read_csv(
     '/home/wyc/0927/envir_2/gpslog2021-09-27-14-49-45.log-GPS.csv')
 dfi = pd.read_csv(
     '/home/wyc/0927/envir_2/gpslog2021-09-27-14-49-45.log-IMU.csv')
-un_name = os.listdir('/home/wyc/0927/0_zero_train/test/data/')
+
+# p = pathlib.Path('/home/wyc/0927/test_envir1/origin_pic/')
+# H_paths = list(p.glob('H*.png'))
+# H_paths.sort()
+# print(H_paths)
+
+un_name = os.listdir('/home/wyc/0927/0_base_train/eval/data/')
 un_name.sort()
 
 rrow = 0
@@ -25,7 +32,7 @@ for rrow in range(dfg.shape[0]):
     if rosftime_str == train_name:
         data_index = data_index + 6  #first train 模式，每6张图片一组，分包1-6,7-12,13-18
         # data_index = data_index + 1 #second train模式，每6张图片一组，1-6,2-7,3-8
-        log_path = '/home/wyc/0927/0_zero_train/test/label/' + rosftime_str + '.csv'
+        log_path = '/home/wyc/0927/0_base_train/eval/label/' + rosftime_str + '.csv'
         file = open(log_path, 'a+', encoding='utf-8', newline='')
         csv_writer = csv.writer(file)
         csv_writer.writerow([f'x', 'y'])
